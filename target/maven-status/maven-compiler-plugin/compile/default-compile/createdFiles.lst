@@ -1,0 +1,14 @@
+com\niit\illuminatebe\dao\UsersDao.class
+com\niit\illuminatebe\model\BillingAddress.class
+com\niit\illuminatebe\daoimpl\CategoryDaoImpl.class
+com\niit\illuminatebe\serviceimpl\CategoryServiceImpl.class
+com\niit\illuminatebe\model\Category.class
+com\niit\illuminatebe\service\UsersService.class
+com\niit\illuminatebe\model\Authorities.class
+com\niit\illuminatebe\service\CategoryService.class
+com\niit\illuminatebe\config\ApplicationContextConfig.class
+com\niit\illuminatebe\daoimpl\UsersDaoImpl.class
+com\niit\illuminatebe\serviceimpl\UsersServiceImpl.class
+com\niit\illuminatebe\dao\CategoryDao.class
+com\niit\illuminatebe\model\Users.class
+com\niit\illuminatebe\model\ShippingAddress.class
