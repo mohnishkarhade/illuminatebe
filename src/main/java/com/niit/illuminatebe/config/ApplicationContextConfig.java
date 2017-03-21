@@ -15,7 +15,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan("com.niit")
+@ComponentScan(basePackages = "com.niit.illuminate, com.niit.illuminatebe")
 @EnableTransactionManagement
 public class ApplicationContextConfig {
 	@Bean(name = "dataSource")

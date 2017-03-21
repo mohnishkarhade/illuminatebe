@@ -10,14 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.illuminatebe.dao.UsersDao;
 import com.niit.illuminatebe.model.Authorities;
 import com.niit.illuminatebe.model.Users;
 
 @Repository
-@Transactional
 public class UsersDaoImpl implements UsersDao {
 
 	@Autowired
