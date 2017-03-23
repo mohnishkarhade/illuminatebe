@@ -35,9 +35,13 @@ public class UsersDaoImpl implements UsersDao {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			
+			users.getBillingAddress().setUsers(users);
+			users.getShippingAddress().setUsers(users);
+			
+			session.saveOrUpdate(users);
 			session.saveOrUpdate(users.getBillingAddress());
 			session.saveOrUpdate(users.getShippingAddress());
-			session.saveOrUpdate(users);
+			
 			logger.info("Users details inserted");
 
 			Authorities authority = new Authorities();

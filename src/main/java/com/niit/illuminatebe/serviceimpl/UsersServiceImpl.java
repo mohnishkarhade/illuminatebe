@@ -10,7 +10,7 @@ import com.niit.illuminatebe.dao.UsersDao;
 import com.niit.illuminatebe.model.Users;
 import com.niit.illuminatebe.service.UsersService;
 
-@Service
+@Service("usersService")
 public class UsersServiceImpl implements UsersService {
 
 	@Autowired

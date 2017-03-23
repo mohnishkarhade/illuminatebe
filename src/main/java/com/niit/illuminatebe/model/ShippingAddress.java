@@ -6,15 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-public class ShippingAddress implements Serializable{
+public class ShippingAddress implements Serializable {
 
 	private static final long serialVersionUID = 125L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int shippingAddressId;
@@ -24,6 +25,17 @@ public class ShippingAddress implements Serializable{
 	private String state;
 	private String country;
 	private long zipcode;
+
+	@OneToOne
+	private Users users;
+
+	public Users getUsers() {
+		return users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
 
 	public int getShippingAddressId() {
 		return shippingAddressId;

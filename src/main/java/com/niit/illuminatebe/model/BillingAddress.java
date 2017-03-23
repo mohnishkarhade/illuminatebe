@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Component
 public class BillingAddress implements Serializable {
-	
+
 	private static final long serialVersionUID = 127L;
 
 	@Id
@@ -25,6 +26,17 @@ public class BillingAddress implements Serializable {
 	private String state;
 	private String country;
 	private long zipcode;
+
+	@OneToOne
+	private Users users;
+
+	public Users getUsers() {
+		return users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
 
 	public int getBillingAddressId() {
 		return billingAddressId;

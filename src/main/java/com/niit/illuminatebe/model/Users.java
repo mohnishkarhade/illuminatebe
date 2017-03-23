@@ -36,7 +36,7 @@ public class Users implements Serializable {
 	@Column
 	private String password;
 
-	@Column
+	@Column(unique = true)
 	private String mobileno;
 
 	private boolean enabled;
