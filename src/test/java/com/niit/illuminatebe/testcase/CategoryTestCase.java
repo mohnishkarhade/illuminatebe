@@ -1,5 +1,7 @@
 package com.niit.illuminatebe.testcase;
 
+import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +30,20 @@ public class CategoryTestCase {
 		categoryService = (CategoryService) context.getBean("categoryService");
 	}
 
+//	@Test
+//	public void saveCategoryTest() {
+//		category.setName("LED");
+//		category.setDescription("Light emmiting diode");
+//		
+//		boolean flag = categoryService.save(category);
+//		
+//		Assert.assertEquals("save category test case", true, flag);
+//	}
+	
 	@Test
-	public void saveCategoryTest() {
-		category.setName("LED");
-		category.setDescription("Light emmiting diode");
-		
-		boolean flag = categoryService.save(category);
-		
-		Assert.assertEquals("save category test case", true, flag);
+	public void getAllCategories(){
+		List<Category> categoryList= categoryService.getAllCategories();
+		System.out.println(categoryList);		
 	}
 
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -13,12 +15,26 @@ import com.niit.illuminatebe.model.Category;
 @Repository()
 public class CategoryDaoImpl implements CategoryDao {
 	
+	private final Logger logger = LoggerFactory.getLogger(CategoryDaoImpl.class);
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	public List<Category> getAllCategories() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from Category").list();
+		logger.info("Starting getAllCategories method");
+		try {
+			List<Category> categoryList = sessionFactory.getCurrentSession().createQuery("from Category").list();
+			for(Category c : categoryList){
+				logger.info("Category List:: "+c);
+			}
+			logger.info("Ending getAllCategories method");
+			return categoryList;
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.error("Exception occured"+e);
+			throw e;
+		}		
 	}
 
 	public boolean save(Category category) {
