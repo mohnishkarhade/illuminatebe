@@ -30,15 +30,15 @@ public class CategoryTestCase {
 		categoryService = (CategoryService) context.getBean("categoryService");
 	}
 
-//	@Test
-//	public void saveCategoryTest() {
-//		category.setName("LED");
-//		category.setDescription("Light emmiting diode");
-//		
-//		boolean flag = categoryService.save(category);
-//		
-//		Assert.assertEquals("save category test case", true, flag);
-//	}
+	@Test
+	public void saveCategoryTest() {
+		category.setName("LED");
+		category.setDescription("Light emmiting diode");
+		
+		boolean flag = categoryService.save(category);
+		
+		Assert.assertEquals("save category test case", true, flag);
+	}
 	
 	@Test
 	public void getAllCategories(){
