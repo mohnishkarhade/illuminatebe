@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.illuminatebe.dao.SupplierDao;
+import com.niit.illuminatebe.model.Category;
 import com.niit.illuminatebe.model.Supplier;
 
 @Repository
@@ -55,19 +56,33 @@ public class SupplierDaoImpl implements SupplierDao {
 
 	@Override
 	public boolean update(Supplier supplier) {
-		return false;
+		try {
+			sessionFactory.getCurrentSession().update(supplier);
+			return true;
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public boolean delete(int id) {
 		// TODO Auto-generated method stub
-		return false;
+		try {
+			sessionFactory.getCurrentSession().delete(getSupplierById(id));
+			return true;
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public Supplier getSupplierById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return (Supplier) sessionFactory.getCurrentSession().get(Supplier.class, id);
 	}
 
 }
