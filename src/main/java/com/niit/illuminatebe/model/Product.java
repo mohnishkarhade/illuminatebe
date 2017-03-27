@@ -8,8 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Component
@@ -27,6 +29,9 @@ public class Product implements Serializable {
 
 	private int categoryId;
 	private int supplierId;
+
+	@Transient
+	private MultipartFile file;
 
 	@ManyToOne
 	@JoinColumn(name = "categoryId", updatable = false, nullable = false, insertable = false)
@@ -98,6 +103,14 @@ public class Product implements Serializable {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}	
-		
+
 }
