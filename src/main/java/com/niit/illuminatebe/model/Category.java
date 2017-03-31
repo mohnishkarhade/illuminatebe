@@ -2,6 +2,7 @@ package com.niit.illuminatebe.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,19 +18,18 @@ import org.springframework.stereotype.Component;
 public class Category {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private int id;
-	
+
 	@Column
 	private String name;
-	
+
 	@Column
 	private String description;
-	
-	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+
+	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Product> products;
-	
 
 	public Set<Product> getProducts() {
 		return products;
@@ -62,6 +62,5 @@ public class Category {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
+
 }

@@ -41,7 +41,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public boolean save(Product product) {
 		// TODO Auto-generated method stub
-		try {
+		try {			
 			sessionFactory.getCurrentSession().save(product);
 			return true;
 		} catch (HibernateException e) {

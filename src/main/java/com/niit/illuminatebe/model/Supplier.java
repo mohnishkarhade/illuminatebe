@@ -2,6 +2,7 @@ package com.niit.illuminatebe.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Supplier {
 
 	private String address;
 
-	@OneToMany(mappedBy = "supplier", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "supplier", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Product> products;
 
 	public int getId() {
@@ -59,5 +60,5 @@ public class Supplier {
 	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
-	
+
 }

@@ -9,7 +9,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.web.multipart.MultipartFile;
 
 import com.niit.illuminatebe.config.ApplicationContextConfig;
+import com.niit.illuminatebe.model.Category;
 import com.niit.illuminatebe.model.Product;
+import com.niit.illuminatebe.model.Supplier;
 import com.niit.illuminatebe.service.ProductService;
 
 import junit.framework.Assert;
@@ -18,6 +20,12 @@ public class ProductTestCase {
 
 	@Autowired
 	private static Product product;
+	
+	@Autowired
+	private static Category category;
+	
+	@Autowired
+	private static Supplier supplier;
 
 	@Autowired
 	private static ProductService productService;
@@ -38,9 +46,10 @@ public class ProductTestCase {
 		
 		product.setName("LED");
 		product.setDescription("Light emmiting diode");
-		product.setCategoryId(189);
+		
 		product.setPrice(450);
-		product.setSupplierId(192);
+		
+		
 		
 		
 		boolean flag = productService.save(product);
