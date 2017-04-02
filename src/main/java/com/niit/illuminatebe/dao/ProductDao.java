@@ -20,5 +20,5 @@ public interface ProductDao {
 
 	public List<Product> viewByStatus(String status);
 
-	public boolean changeStatus(int id);
+	public int changeStatus(int id);
 }

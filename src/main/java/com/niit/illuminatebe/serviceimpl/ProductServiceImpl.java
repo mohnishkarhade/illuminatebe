@@ -59,4 +59,10 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.viewByStatus(status);
 	}
 
+	@Override
+	public int changeStatus(int id) {
+		// TODO Auto-generated method stub
+		return productDao.changeStatus(id);
+	}
+
 }

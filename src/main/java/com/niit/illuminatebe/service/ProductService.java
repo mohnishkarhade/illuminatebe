@@ -18,4 +18,6 @@ public interface ProductService {
 	public Product getProductByName(String name); // get() product by name
 
 	public List<Product> viewByStatus(String status);
+	
+	public int changeStatus(int id);
 }

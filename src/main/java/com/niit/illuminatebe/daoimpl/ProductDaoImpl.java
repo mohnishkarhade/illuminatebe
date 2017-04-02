@@ -129,9 +129,32 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public boolean changeStatus(int id) {
+	public int changeStatus(int id) {
 		// TODO Auto-generated method stub
-		return false;
+		try {
+
+			// Query query = sessionFactory.getCurrentSession()
+			// .createQuery("update Product set status='" + newstatus+"' where
+			// id=" + id);
+			// return query.executeUpdate();
+
+			Product fetchProduct = getProductByID(id);
+			if (fetchProduct.getStatus().equalsIgnoreCase("Running")) {
+				Query query = sessionFactory.getCurrentSession()
+						.createQuery("update Product set status='Discontinued' where id=" + id);
+				return query.executeUpdate();
+			} else {
+				Query query = sessionFactory.getCurrentSession()
+						.createQuery("update Product set status='Running' where id=" + id);
+				return query.executeUpdate();
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error("Exception occured" + e);
+			throw e;
+		}
 	}
 
 }
