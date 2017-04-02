@@ -1,5 +1,6 @@
 package com.niit.illuminatebe.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,7 +17,12 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "SUPPLIER")
 @Component
-public class Supplier {
+public class Supplier implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1092275312700129267L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,6 +31,8 @@ public class Supplier {
 	private String name;
 
 	private String address;
+
+	private String status;
 
 	@OneToMany(mappedBy = "supplier", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Product> products;
@@ -59,6 +67,14 @@ public class Supplier {
 
 	public void setProducts(Set<Product> products) {
 		this.products = products;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

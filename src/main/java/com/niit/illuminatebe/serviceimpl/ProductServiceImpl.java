@@ -53,4 +53,10 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.getProductByName(name);
 	}
 
+	@Override
+	public List<Product> viewByStatus(String status) {
+		// TODO Auto-generated method stub
+		return productDao.viewByStatus(status);
+	}
+
 }

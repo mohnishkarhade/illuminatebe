@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class ProductDaoImpl implements ProductDao {
 			return productList;
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			logger.error("Exception occured" + e);
 			throw e;
 		}
@@ -41,12 +43,13 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public boolean save(Product product) {
 		// TODO Auto-generated method stub
-		try {			
+		try {
 			sessionFactory.getCurrentSession().save(product);
 			return true;
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.error("Exception occured" + e);
 			return false;
 		}
 	}
@@ -54,25 +57,81 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public boolean update(Product product) {
 		// TODO Auto-generated method stub
-		return false;
+		try {
+			sessionFactory.getCurrentSession().update(product);
+			return true;
+		} catch (HibernateException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error("Exception occured" + e);
+			throw e;
+		}
 	}
 
 	@Override
 	public boolean delete(int id) {
 		// TODO Auto-generated method stub
-		return false;
+		try {
+			sessionFactory.getCurrentSession().delete(getProductByID(id));
+			return true;
+		} catch (HibernateException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error("Exception occured" + e);
+			throw e;
+		}
 	}
 
 	@Override
 	public Product getProductByID(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			return sessionFactory.getCurrentSession().get(Product.class, id);
+		} catch (HibernateException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error("Exception occured" + e);
+			throw e;
+		}
 	}
 
 	@Override
 	public Product getProductByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			Query query = sessionFactory.getCurrentSession().createQuery("from Product where name= '" + name + "'");
+			Product product = (Product) query.uniqueResult();
+
+			return product;
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			logger.error("Exception occured" + e);
+			throw e;
+		}
+	}
+
+	@Override
+	public List<Product> viewByStatus(String status) {
+		// TODO Auto-generated method stub
+		try {
+			Query query = sessionFactory.getCurrentSession()
+					.createQuery("from Product where status like '" + status + "'");
+			List<Product> productList = query.list();
+
+			return productList;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error("Exception occured" + e);
+			throw e;
+		}
+	}
+
+	@Override
+	public boolean changeStatus(int id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -19,7 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 @Table(name = "PRODUCT")
 public class Product implements Serializable {
 
-	private static final long serialVersionUId = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6620547542099192995L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,9 +31,11 @@ public class Product implements Serializable {
 	private String name;
 	private String description;
 	private int price;
-	
+
 	private int categoryId;
 	private int supplierId;
+
+	private String status;
 
 	@Transient
 	private MultipartFile file;
@@ -66,7 +71,7 @@ public class Product implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public int getCategoryId() {
 		return categoryId;
 	}
@@ -113,6 +118,14 @@ public class Product implements Serializable {
 
 	public void setFile(MultipartFile file) {
 		this.file = file;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

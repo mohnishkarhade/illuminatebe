@@ -17,4 +17,8 @@ public interface ProductDao {
 	public Product getProductByID(int id); // get() product by id
 
 	public Product getProductByName(String name); // get() product by name
+
+	public List<Product> viewByStatus(String status);
+
+	public boolean changeStatus(int id);
 }
