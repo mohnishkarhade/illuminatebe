@@ -28,14 +28,14 @@ public class BillingAddress implements Serializable {
 	private long zipcode;
 
 	@OneToOne
-	private Users users;
+	private Customer customer;
 
-	public Users getUsers() {
-		return users;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setUsers(Users users) {
-		this.users = users;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public int getBillingAddressId() {
