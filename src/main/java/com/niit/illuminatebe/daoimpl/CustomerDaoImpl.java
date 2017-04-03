@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,7 +96,17 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public Customer getUserByUserName(String username) {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			Query query = sessionFactory.getCurrentSession()
+					.createQuery("from Customer where username= '" + username + "'");
+			Customer customer = (Customer) query.uniqueResult();
+
+			return customer;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 }
