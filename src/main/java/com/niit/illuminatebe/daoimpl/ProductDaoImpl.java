@@ -156,5 +156,9 @@ public class ProductDaoImpl implements ProductDao {
 			throw e;
 		}
 	}
+	
+	public List<Product> getProductListByCategory(int id){
+		
+	}
 
 }

@@ -109,4 +109,20 @@ public class CustomerDaoImpl implements CustomerDao {
 		}
 	}
 
+	@Override
+	public String getUserRole(String username) {
+		// TODO Auto-generated method stub
+		try {
+			Query query = sessionFactory.getCurrentSession()
+					.createQuery("from Authorities where username= '" + username + "'");
+			Authorities authorities = (Authorities) query.uniqueResult();
+			return authorities.getAuthority();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
 }

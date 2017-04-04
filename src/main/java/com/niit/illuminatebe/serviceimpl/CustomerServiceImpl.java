@@ -53,4 +53,10 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.getUserByUserName(username);
 	}
 
+	@Override
+	public String getUserRole(String username) {
+		// TODO Auto-generated method stub
+		return customerDao.getUserRole(username);
+	}
+
 }

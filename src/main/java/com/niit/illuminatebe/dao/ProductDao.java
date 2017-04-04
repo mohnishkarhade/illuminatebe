@@ -21,4 +21,6 @@ public interface ProductDao {
 	public List<Product> viewByStatus(String status);
 
 	public int changeStatus(int id);
+
+	public List<Product> getProductListByCategory(int id);
 }

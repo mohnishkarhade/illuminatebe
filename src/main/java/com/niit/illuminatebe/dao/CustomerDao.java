@@ -17,5 +17,7 @@ public interface CustomerDao {
 	public Customer getUserById(int id);
 
 	public Customer getUserByUserName(String username);
+	
+	public String getUserRole(String username);
 
 }
