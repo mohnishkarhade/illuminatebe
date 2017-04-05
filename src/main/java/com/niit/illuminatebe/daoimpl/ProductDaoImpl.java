@@ -156,9 +156,19 @@ public class ProductDaoImpl implements ProductDao {
 			throw e;
 		}
 	}
-	
-	public List<Product> getProductListByCategory(int id){
-		
+
+	public List<Product> getProductListByCategory(int id) {
+		try {
+			Query query = sessionFactory.getCurrentSession().createQuery("from Product where categoryId = " + id);
+			List<Product> productList = query.list();
+
+			return productList;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error("Exception occured" + e);
+			throw e;
+		}
 	}
 
 }

@@ -65,4 +65,8 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.changeStatus(id);
 	}
 
+	public List<Product> getProductListByCategory(int id) {
+		return productDao.getProductListByCategory(id);
+	}
+
 }
