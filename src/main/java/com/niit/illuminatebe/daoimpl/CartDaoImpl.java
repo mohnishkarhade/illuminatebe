@@ -31,7 +31,7 @@ public class CartDaoImpl implements CartDao {
 		// TODO Auto-generated method stub
 		logger.info("Starting save method of cartdaoimpl");
 		try {
-			sessionFactory.getCurrentSession().save(cart);
+			sessionFactory.getCurrentSession().save(cart);			
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -60,7 +60,7 @@ public class CartDaoImpl implements CartDao {
 	public boolean update(Cart cart) {
 		// TODO Auto-generated method stub
 		try {
-			sessionFactory.getCurrentSession().update(cart);
+			sessionFactory.getCurrentSession().update(cart);			
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
