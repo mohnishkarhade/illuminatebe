@@ -16,6 +16,8 @@ public interface CustomerService {
 	public Customer getUserById(int id);
 
 	public Customer getUserByUserName(String username);
+	
+	public Customer getUserByCustomerName(String name);
 
 	public String getUserRole(String username);
 }

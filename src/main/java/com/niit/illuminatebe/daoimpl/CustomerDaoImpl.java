@@ -125,4 +125,20 @@ public class CustomerDaoImpl implements CustomerDao {
 		}
 	}
 
+	@Override
+	public Customer getUserByCustomerName(String name) {
+		// TODO Auto-generated method stub
+		try {
+			Query query = sessionFactory.getCurrentSession()
+					.createQuery("from Customer where name= '" + name + "'");
+			Customer customer = (Customer) query.uniqueResult();
+
+			return customer;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
 }

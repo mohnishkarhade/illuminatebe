@@ -18,6 +18,8 @@ public interface CustomerDao {
 
 	public Customer getUserByUserName(String username);
 	
+	public Customer getUserByCustomerName(String name);
+	
 	public String getUserRole(String username);
 
 }
