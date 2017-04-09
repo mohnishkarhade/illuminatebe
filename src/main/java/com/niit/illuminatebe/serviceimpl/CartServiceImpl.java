@@ -18,9 +18,9 @@ public class CartServiceImpl implements CartService {
 	private CartDao cartDao;
 
 	@Override
-	public List<Cart> getCartList(int id) {
+	public List<Cart> getCartList(String username) {
 		// TODO Auto-generated method stub
-		return cartDao.getCartList(id);
+		return cartDao.getCartList(username);
 	}
 
 	@Override
@@ -42,9 +42,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public Long getTotalAmount(int id) {
+	public long getTotalAmount(String username) {
 		// TODO Auto-generated method stub
-		return cartDao.getTotalAmount(id);
+		return cartDao.getTotalAmount(username);
 	}
 
 	@Override
@@ -57,6 +57,12 @@ public class CartServiceImpl implements CartService {
 	public int getQuantity(String username, String productname) {
 		// TODO Auto-generated method stub
 		return cartDao.getQuantity(username, productname);
+	}
+
+	@Override
+	public long getNumberOfProducts(String username) {
+		// TODO Auto-generated method stub
+		return cartDao.getNumberOfProducts(username);
 	}
 
 }

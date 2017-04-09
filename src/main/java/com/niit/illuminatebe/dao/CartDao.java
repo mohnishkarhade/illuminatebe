@@ -6,7 +6,7 @@ import com.niit.illuminatebe.model.Cart;
 
 public interface CartDao {
 
-	public List<Cart> getCartList(int id);
+	public List<Cart> getCartList(String username);
 
 	public boolean save(Cart cart);
 
@@ -16,8 +16,10 @@ public interface CartDao {
 
 	public int getQuantity(String username, String productname);
 
-	public Long getTotalAmount(int id);
+	public long getTotalAmount(String username);
 
 	public Cart getCartByUsername(String username, String productname);
+
+	public long getNumberOfProducts(String username);
 
 }

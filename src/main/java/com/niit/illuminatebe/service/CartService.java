@@ -5,7 +5,7 @@ import java.util.List;
 import com.niit.illuminatebe.model.Cart;
 
 public interface CartService {
-	public List<Cart> getCartList(int id);
+	public List<Cart> getCartList(String username);
 
 	public boolean save(Cart cart);
 
@@ -15,7 +15,9 @@ public interface CartService {
 
 	public int getQuantity(String username, String productname);
 
-	public Long getTotalAmount(int id);
+	public long getTotalAmount(String username);
 
 	public Cart getCartByUsername(String username, String productname);
+	
+	public long getNumberOfProducts(String username);
 }

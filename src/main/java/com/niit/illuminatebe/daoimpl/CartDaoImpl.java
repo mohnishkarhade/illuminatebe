@@ -21,9 +21,18 @@ public class CartDaoImpl implements CartDao {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public List<Cart> getCartList(int id) {
+	public List<Cart> getCartList(String username) {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			Query query = sessionFactory.getCurrentSession()
+					.createQuery("from Cart where username = '" + username + "'");
+			return query.list();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error("Exception occured" + e);
+			throw e;
+		}
 	}
 
 	@Override
@@ -31,7 +40,7 @@ public class CartDaoImpl implements CartDao {
 		// TODO Auto-generated method stub
 		logger.info("Starting save method of cartdaoimpl");
 		try {
-			sessionFactory.getCurrentSession().save(cart);			
+			sessionFactory.getCurrentSession().save(cart);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -60,7 +69,7 @@ public class CartDaoImpl implements CartDao {
 	public boolean update(Cart cart) {
 		// TODO Auto-generated method stub
 		try {
-			sessionFactory.getCurrentSession().update(cart);			
+			sessionFactory.getCurrentSession().update(cart);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -71,20 +80,36 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
-	public Long getTotalAmount(int id) {
+	public long getTotalAmount(String username) {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+
+			Query query = sessionFactory.getCurrentSession()
+					.createQuery("SELECT SUM(price) FROM Cart where username='" + username + "'");
+			if (query.uniqueResult() == null) {
+				return 0;
+			} else {
+				long result = (long) query.uniqueResult();
+				return result;
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error("Exception occured" + e);
+			throw e;
+		}
 	}
 
 	@Override
 	public Cart getCartByUsername(String username, String productname) {
 		// TODO Auto-generated method stub
 		try {
-			logger.info("Starting getquantity method of cartdaoimpl");
+			logger.info("Starting getcartbyusername method of cartdaoimpl");
 
 			Query query = sessionFactory.getCurrentSession()
 					.createQuery("from Cart WHERE username='" + username + "' and product_name='" + productname + "'");
-			logger.info("Ending getquantity method of cartdaoimpl");
+			logger.info("Ending getcartbyusername method of cartdaoimpl");
 			return (Cart) query.uniqueResult();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -104,6 +129,26 @@ public class CartDaoImpl implements CartDao {
 					+ username + "' and product_name='" + productname + "'");
 			logger.info("Ending getquantity method of cartdaoimpl");
 			return (int) query.uniqueResult();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error("Exception occured" + e);
+			throw e;
+		}
+	}
+
+	@Override
+	public long getNumberOfProducts(String username) {
+		// TODO Auto-generated method stub
+		try {
+			Query query = sessionFactory.getCurrentSession()
+					.createQuery("SELECT SUM(quantity) FROM Cart where username='" + username + "'");
+			if (query.uniqueResult() == null) {
+				return 0;
+			} else {
+				long result = (long) query.uniqueResult();
+				return result;
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
