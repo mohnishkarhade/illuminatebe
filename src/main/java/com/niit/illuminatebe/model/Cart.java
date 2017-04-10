@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.springframework.stereotype.Component;
 
@@ -37,6 +39,12 @@ public class Cart implements Serializable {
 
 	@Column(name = "date_added")
 	private Date dateAdded;
+
+	private int customer_id;
+
+	@ManyToOne
+	@JoinColumn(name = "customer_id", nullable = false, updatable = false, insertable = false)
+	private Customer customer;
 
 	public int getId() {
 		return id;
@@ -92,6 +100,22 @@ public class Cart implements Serializable {
 
 	public void setDateAdded(Date dateAdded) {
 		this.dateAdded = dateAdded;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public int getCustomer_id() {
+		return customer_id;
+	}
+
+	public void setCustomer_id(int customer_id) {
+		this.customer_id = customer_id;
 	}
 
 }

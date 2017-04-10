@@ -1,5 +1,6 @@
 package com.niit.illuminatebe.daoimpl;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -165,6 +166,31 @@ public class CartDaoImpl implements CartDao {
 			logger.error("Exception occured" + e);
 			throw e;
 		}
+	}
+
+	@Override
+	public int clearCart(String username) {
+		// TODO Auto-generated method stub
+		try {
+			Query query = sessionFactory.getCurrentSession()
+					.createQuery("UPDATE Cart SET status='OLD' where username = '" + username + "'");
+			return query.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error("Exception occured" + e);
+			throw e;
+		}
+	}
+
+	public Cart validate(int cartId) throws IOException {
+		Cart cart = getCartById(cartId);
+		if (cart == null) {
+			throw new IOException(cartId + "");
+		}
+		update(cart);
+		return cart;
 	}
 
 }

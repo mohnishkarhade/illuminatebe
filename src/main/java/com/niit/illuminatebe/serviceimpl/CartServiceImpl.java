@@ -1,5 +1,6 @@
 package com.niit.illuminatebe.serviceimpl;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,16 @@ public class CartServiceImpl implements CartService {
 	public Cart getCartById(int id) {
 		// TODO Auto-generated method stub
 		return cartDao.getCartById(id);
+	}
+
+	public int clearCart(String username) {
+		return cartDao.clearCart(username);
+	}
+
+	@Override
+	public Cart validate(int cartId) throws IOException {
+		// TODO Auto-generated method stub
+		return cartDao.validate(cartId);
 	}
 
 }

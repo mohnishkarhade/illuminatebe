@@ -1,13 +1,18 @@
 package com.niit.illuminatebe.model;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.springframework.stereotype.Component;
@@ -47,6 +52,9 @@ public class Customer implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "SHIPPINGADD_ID")
 	private ShippingAddress shippingAddress;
+
+	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Cart> cartItems;
 
 	public int getId() {
 		return id;
@@ -110,6 +118,14 @@ public class Customer implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<Cart> getCartItems() {
+		return cartItems;
+	}
+
+	public void setCartItems(List<Cart> cartItems) {
+		this.cartItems = cartItems;
 	}
 
 }
