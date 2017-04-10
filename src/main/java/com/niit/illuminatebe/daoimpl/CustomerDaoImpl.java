@@ -90,7 +90,13 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public Customer getUserById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			return (Customer) sessionFactory.getCurrentSession().get(Customer.class, id);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@Override
@@ -129,8 +135,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	public Customer getUserByCustomerName(String name) {
 		// TODO Auto-generated method stub
 		try {
-			Query query = sessionFactory.getCurrentSession()
-					.createQuery("from Customer where name= '" + name + "'");
+			Query query = sessionFactory.getCurrentSession().createQuery("from Customer where name= '" + name + "'");
 			Customer customer = (Customer) query.uniqueResult();
 
 			return customer;
