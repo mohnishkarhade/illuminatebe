@@ -21,5 +21,7 @@ public interface CartDao {
 	public Cart getCartByUsername(String username, String productname);
 
 	public long getNumberOfProducts(String username);
+	
+	public Cart getCartById(int id);
 
 }

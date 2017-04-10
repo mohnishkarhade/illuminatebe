@@ -65,4 +65,10 @@ public class CartServiceImpl implements CartService {
 		return cartDao.getNumberOfProducts(username);
 	}
 
+	@Override
+	public Cart getCartById(int id) {
+		// TODO Auto-generated method stub
+		return cartDao.getCartById(id);
+	}
+
 }
