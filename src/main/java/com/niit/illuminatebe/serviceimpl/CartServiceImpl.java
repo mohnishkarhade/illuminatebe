@@ -31,9 +31,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public boolean delete(Cart cart) {
+	public boolean delete(int id) {
 		// TODO Auto-generated method stub
-		return cartDao.delete(cart);
+		return cartDao.delete(id);
 	}
 
 	@Override

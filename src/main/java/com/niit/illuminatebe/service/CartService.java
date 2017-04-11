@@ -10,7 +10,7 @@ public interface CartService {
 
 	public boolean save(Cart cart);
 
-	public boolean delete(Cart cart);
+	public boolean delete(int id);
 
 	public boolean update(Cart cart);
 

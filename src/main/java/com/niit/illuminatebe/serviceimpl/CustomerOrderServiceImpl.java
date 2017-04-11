@@ -16,9 +16,9 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 	private CustomerOrderDao customerOrderDao;
 
 	@Override
-	public void addCustomerOrder(CustomerOrder customerOrder) {
+	public boolean addCustomerOrder(CustomerOrder customerOrder) {
 		// TODO Auto-generated method stub
-		customerOrderDao.addCustomerOrder(customerOrder);
+		return customerOrderDao.addCustomerOrder(customerOrder);
 	}
 
 }

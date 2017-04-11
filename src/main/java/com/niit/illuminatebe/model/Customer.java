@@ -53,7 +53,7 @@ public class Customer implements Serializable {
 	@JoinColumn(name = "SHIPPINGADD_ID")
 	private ShippingAddress shippingAddress;
 
-	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Cart> cartItems;
 
 	public int getId() {

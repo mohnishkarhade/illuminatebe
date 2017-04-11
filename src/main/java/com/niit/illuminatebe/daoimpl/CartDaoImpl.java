@@ -49,11 +49,11 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
-	public boolean delete(Cart cart) {
+	public boolean delete(int id) {
 		// TODO Auto-generated method stub
 		logger.info("Starting delete method of cartdaoimpl");
 		try {
-			sessionFactory.getCurrentSession().delete(cart);
+			sessionFactory.getCurrentSession().delete(getCartById(id));
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -172,8 +172,13 @@ public class CartDaoImpl implements CartDao {
 	public int clearCart(String username) {
 		// TODO Auto-generated method stub
 		try {
+			/*
+			 * Query query = sessionFactory.getCurrentSession()
+			 * .createQuery("UPDATE Cart SET status='OLD' where username = '" +
+			 * username + "'");
+			 */
 			Query query = sessionFactory.getCurrentSession()
-					.createQuery("UPDATE Cart SET status='OLD' where username = '" + username + "'");
+					.createQuery("DELETE from Cart where username = '" + username + "'");
 			return query.executeUpdate();
 
 		} catch (Exception e) {
