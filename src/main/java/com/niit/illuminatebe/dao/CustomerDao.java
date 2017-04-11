@@ -3,6 +3,7 @@ package com.niit.illuminatebe.dao;
 import java.util.List;
 
 import com.niit.illuminatebe.model.Customer;
+import com.niit.illuminatebe.model.Users;
 
 public interface CustomerDao {
 
@@ -16,10 +17,16 @@ public interface CustomerDao {
 
 	public Customer getUserById(int id);
 
+	public Users getUsersById(int id);
+
 	public Customer getUserByUserName(String username);
-	
+
 	public Customer getUserByCustomerName(String name);
-	
+
 	public String getUserRole(String username);
+
+	public boolean getStatus(int id);
+
+	public int changeStatus(int id);
 
 }

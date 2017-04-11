@@ -63,8 +63,10 @@ public class CustomerDaoImpl implements CustomerDao {
 			users.setEnabled(true);
 			users.setUsername(customer.getUsername());
 			users.setPassword(customer.getPassword());
-			users.setCustomerId(customer.getId());
+			users.setCustomer(customer);
 			session.saveOrUpdate(users);
+			customer.setUsers(users);
+			session.saveOrUpdate(customer);
 			logger.info("User detail inserted");
 
 			return true;
@@ -139,6 +141,47 @@ public class CustomerDaoImpl implements CustomerDao {
 			Customer customer = (Customer) query.uniqueResult();
 
 			return customer;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	@Override
+	public Users getUsersById(int id) {
+		// TODO Auto-generated method stub
+		try {
+			Query query = sessionFactory.getCurrentSession().createQuery("FROM Users where customerId=" + id);
+			return (Users) query.uniqueResult();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	public boolean getStatus(int id) {
+		Users users = getUsersById(id);
+		return users.isEnabled();
+	}
+
+	@Override
+	public int changeStatus(int id) {
+		// TODO Auto-generated method stub
+		try {
+			Users users = getUsersById(id);
+			boolean isEnable = users.isEnabled();
+
+			if (isEnable) {
+				Query query = sessionFactory.getCurrentSession()
+						.createQuery("UPDATE Users SET enabled = " + false + " WHERE customerId = " + id);
+				return query.executeUpdate();
+			} else {
+				Query query = sessionFactory.getCurrentSession()
+						.createQuery("UPDATE Users SET enabled = " + true + " WHERE customerId = " + id);
+				return query.executeUpdate();
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

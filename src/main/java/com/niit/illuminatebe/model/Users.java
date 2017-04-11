@@ -32,7 +32,9 @@ public class Users implements Serializable {
 
 	private boolean enabled;
 
-	private int customerId;
+	@OneToOne
+	@JoinColumn(name = "customerId")
+	private Customer customer;
 
 	public int getId() {
 		return id;
@@ -66,12 +68,12 @@ public class Users implements Serializable {
 		this.enabled = enabled;
 	}
 
-	public int getCustomerId() {
-		return customerId;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 }

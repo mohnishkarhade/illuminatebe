@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.illuminatebe.dao.CustomerDao;
 import com.niit.illuminatebe.model.Customer;
+import com.niit.illuminatebe.model.Users;
 import com.niit.illuminatebe.service.CustomerService;
 
 @Service("customerService")
@@ -61,6 +62,24 @@ public class CustomerServiceImpl implements CustomerService {
 	public String getUserRole(String username) {
 		// TODO Auto-generated method stub
 		return customerDao.getUserRole(username);
+	}
+
+	@Override
+	public Users getUsersById(int id) {
+		// TODO Auto-generated method stub
+		return customerDao.getUsersById(id);
+	}
+
+	@Override
+	public boolean getStatus(int id) {
+		// TODO Auto-generated method stub
+		return customerDao.getStatus(id);
+	}
+
+	@Override
+	public int changeStatus(int id) {
+		// TODO Auto-generated method stub
+		return customerDao.changeStatus(id);
 	}
 
 }

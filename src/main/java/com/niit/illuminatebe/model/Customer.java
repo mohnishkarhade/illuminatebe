@@ -56,6 +56,9 @@ public class Customer implements Serializable {
 	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Cart> cartItems;
 
+	@OneToOne
+	private Users users;
+
 	public int getId() {
 		return id;
 	}
@@ -126,6 +129,14 @@ public class Customer implements Serializable {
 
 	public void setCartItems(List<Cart> cartItems) {
 		this.cartItems = cartItems;
+	}
+
+	public Users getUsers() {
+		return users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
 	}
 
 }
