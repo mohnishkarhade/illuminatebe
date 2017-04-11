@@ -22,13 +22,10 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	public List<Category> getAllCategories() {
 		// TODO Auto-generated method stub
-		logger.info("Starting getAllCategories method");
+		logger.info("Starting getAllCategories method of categoryDao");
 		try {
 			List<Category> categoryList = sessionFactory.getCurrentSession().createQuery("from Category").list();
-			for(Category c : categoryList){
-				logger.info("Category List:: "+c);
-			}
-			logger.info("Ending getAllCategories method");
+			
 			return categoryList;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -39,6 +36,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	public boolean save(Category category) {
 		// TODO Auto-generated method stub
+		logger.info("Starting save method of categoryDao");
 		try {
 			sessionFactory.getCurrentSession().save(category);
 			return true;
@@ -51,6 +49,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	public boolean update(Category category) {
 		// TODO Auto-generated method stub
+		logger.info("Starting update method of categoryDao");
 		try {
 			sessionFactory.getCurrentSession().update(category);
 			return true;
@@ -63,6 +62,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	public boolean delete(int id) {
 		// TODO Auto-generated method stub
+		logger.info("Starting delete method of categoryDao");
 		try {
 			sessionFactory.getCurrentSession().delete(getCategoryById(id));
 			return true;
@@ -75,6 +75,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	public Category getCategoryById(int id) {
 		// TODO Auto-generated method stub
+		logger.info("Starting getCategoryById method of categoryDao");
 		return (Category) sessionFactory.getCurrentSession().get(Category.class, id);
 	}
 

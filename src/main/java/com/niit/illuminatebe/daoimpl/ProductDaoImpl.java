@@ -24,13 +24,9 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> getAllProducts() {
 		// TODO Auto-generated method stub
-		logger.info("Starting getAllProducts method");
+		logger.info("Starting getAllProducts method of ProductDao");
 		try {
-			List<Product> productList = sessionFactory.getCurrentSession().createQuery("from Product").list();
-			for (Product c : productList) {
-				logger.info("Product List:: " + c);
-			}
-			logger.info("Ending getAllProducts method");
+			List<Product> productList = sessionFactory.getCurrentSession().createQuery("from Product").list();			
 			return productList;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -43,6 +39,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public boolean save(Product product) {
 		// TODO Auto-generated method stub
+		logger.info("Starting save method of ProductDao");
 		try {
 			sessionFactory.getCurrentSession().save(product);
 			return true;
@@ -57,6 +54,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public boolean update(Product product) {
 		// TODO Auto-generated method stub
+		logger.info("Starting update method of ProductDao");
 		try {
 			sessionFactory.getCurrentSession().update(product);
 			return true;
@@ -71,6 +69,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public boolean delete(int id) {
 		// TODO Auto-generated method stub
+		logger.info("Starting delete method of ProductDao");
 		try {
 			sessionFactory.getCurrentSession().delete(getProductByID(id));
 			return true;
@@ -85,6 +84,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public Product getProductByID(int id) {
 		// TODO Auto-generated method stub
+		logger.info("Starting getProductById method of ProductDao");
 		try {
 			return sessionFactory.getCurrentSession().get(Product.class, id);
 		} catch (HibernateException e) {
@@ -98,6 +98,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public Product getProductByName(String name) {
 		// TODO Auto-generated method stub
+		logger.info("Starting getProductByName method of ProductDao");
 		try {
 			Query query = sessionFactory.getCurrentSession().createQuery("from Product where name= '" + name + "'");
 			Product product = (Product) query.uniqueResult();
@@ -114,6 +115,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> viewByStatus(String status) {
 		// TODO Auto-generated method stub
+		logger.info("Starting viewByStatus method of ProductDao");
 		try {
 			Query query = sessionFactory.getCurrentSession()
 					.createQuery("from Product where status like '" + status + "'");
@@ -131,6 +133,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public int changeStatus(int id) {
 		// TODO Auto-generated method stub
+		logger.info("Starting changeStatus method of ProductDao");
 		try {
 
 			// Query query = sessionFactory.getCurrentSession()
@@ -158,6 +161,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	public List<Product> getProductListByCategory(int id) {
+		logger.info("Starting getProductListByCategory method of ProductDao");
 		try {
 			Query query = sessionFactory.getCurrentSession().createQuery("from Product where categoryId = " + id);
 			List<Product> productList = query.list();

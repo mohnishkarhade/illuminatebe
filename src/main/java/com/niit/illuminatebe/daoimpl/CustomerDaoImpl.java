@@ -27,6 +27,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public List<Customer> getAllCustomers() {
 		// TODO Auto-generated method stub
+		logger.info("Starting getAllCustomer method of customerDao");
 		try {
 			return sessionFactory.getCurrentSession().createQuery("from Customer").list();
 		} catch (HibernateException e) {
@@ -80,18 +81,21 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public boolean update(Customer customer) {
 		// TODO Auto-generated method stub
+		logger.info("Starting update method of customerDao");
 		return false;
 	}
 
 	@Override
 	public boolean delete(int id) {
 		// TODO Auto-generated method stub
+		logger.info("Starting delete method of customerDao");
 		return false;
 	}
 
 	@Override
 	public Customer getUserById(int id) {
 		// TODO Auto-generated method stub
+		logger.info("Starting getCustomerById method of customerDao");
 		try {
 			return (Customer) sessionFactory.getCurrentSession().get(Customer.class, id);
 		} catch (Exception e) {
@@ -104,6 +108,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public Customer getUserByUserName(String username) {
 		// TODO Auto-generated method stub
+		logger.info("Starting getCustomerByUsername method of customerDao");
 		try {
 			Query query = sessionFactory.getCurrentSession()
 					.createQuery("from Customer where username= '" + username + "'");
@@ -120,6 +125,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public String getUserRole(String username) {
 		// TODO Auto-generated method stub
+		logger.info("Starting getUserRole method of customerDao");
 		try {
 			Query query = sessionFactory.getCurrentSession()
 					.createQuery("from Authorities where username= '" + username + "'");
@@ -136,6 +142,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public Customer getUserByCustomerName(String name) {
 		// TODO Auto-generated method stub
+		logger.info("Starting getCustomerByCustomerName method of customerDao");
 		try {
 			Query query = sessionFactory.getCurrentSession().createQuery("from Customer where name= '" + name + "'");
 			Customer customer = (Customer) query.uniqueResult();
@@ -151,6 +158,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public Users getUsersById(int id) {
 		// TODO Auto-generated method stub
+		logger.info("Starting getUsersById method of customerDao");
 		try {
 			Query query = sessionFactory.getCurrentSession().createQuery("FROM Users where customerId=" + id);
 			return (Users) query.uniqueResult();
@@ -162,6 +170,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	public boolean getStatus(int id) {
+		logger.info("Starting getStatus method of customerDao");
 		Users users = getUsersById(id);
 		return users.isEnabled();
 	}
@@ -169,6 +178,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public int changeStatus(int id) {
 		// TODO Auto-generated method stub
+		logger.info("Starting changeStatus method of customerDao");
 		try {
 			Users users = getUsersById(id);
 			boolean isEnable = users.isEnabled();

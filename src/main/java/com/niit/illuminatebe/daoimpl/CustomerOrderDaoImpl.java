@@ -21,6 +21,7 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao {
 
 	@Override
 	public boolean addCustomerOrder(CustomerOrder customerOrder) {
+		logger.info("Starting addCustomerOrder method of customerOrderDao");
 		// TODO Auto-generated method stub
 		try {
 			Session session = sessionFactory.getCurrentSession();

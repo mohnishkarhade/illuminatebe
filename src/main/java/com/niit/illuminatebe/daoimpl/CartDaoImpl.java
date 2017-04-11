@@ -23,6 +23,7 @@ public class CartDaoImpl implements CartDao {
 
 	@Override
 	public List<Cart> getCartList(String username) {
+		logger.info("Starting getCartList method in cartDao");
 		try {
 			Query query = sessionFactory.getCurrentSession()
 					.createQuery("from Cart where username = '" + username + "' and status='NEW'");
@@ -66,6 +67,7 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public boolean update(Cart cart) {
 		// TODO Auto-generated method stub
+		logger.info("Starting update method in cartDao");
 		try {
 			sessionFactory.getCurrentSession().update(cart);
 			return true;
@@ -80,8 +82,8 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public long getTotalAmount(String username) {
 		// TODO Auto-generated method stub
+		logger.info("Starting getTotalAmount method in cartDao");
 		try {
-
 			Query query = sessionFactory.getCurrentSession().createQuery(
 					"SELECT SUM(price*quantity) FROM Cart where username='" + username + "' and status = 'NEW'");
 			if (query.uniqueResult() == null) {
@@ -138,6 +140,7 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public long getNumberOfProducts(String username) {
 		// TODO Auto-generated method stub
+		logger.info("Starting getNumberOfProducts method in cartDao");
 		try {
 			Query query = sessionFactory.getCurrentSession()
 					.createQuery("SELECT SUM(quantity) FROM Cart where username='" + username + "' and status = 'NEW'");
@@ -158,6 +161,7 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public Cart getCartById(int id) {
 		// TODO Auto-generated method stub
+		logger.info("Starting getCartById method in cartDao");
 		try {
 			return sessionFactory.getCurrentSession().get(Cart.class, id);
 		} catch (Exception e) {
@@ -171,6 +175,7 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public int clearCart(String username) {
 		// TODO Auto-generated method stub
+		logger.info("Starting clearCart method in cartDao");
 		try {
 			/*
 			 * Query query = sessionFactory.getCurrentSession()
@@ -190,6 +195,7 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	public Cart validate(int cartId) throws IOException {
+		logger.info("Starting validate method in cartDao");
 		Cart cart = getCartById(cartId);
 		if (cart == null) {
 			throw new IOException(cartId + "");

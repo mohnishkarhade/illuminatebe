@@ -23,13 +23,10 @@ public class SupplierDaoImpl implements SupplierDao {
 
 	@Override
 	public List<Supplier> getAllSuppliers() {
-		logger.info("Starting getAllSuppliers method");
+		logger.info("Starting getAllSuppliers method of SupplierDao");
 		try {
 			List<Supplier> supplierList = sessionFactory.getCurrentSession().createQuery("from Supplier").list();
-			for (Supplier c : supplierList) {
-				logger.info("Supplier List:: " + c);
-			}
-			logger.info("Ending getAllSuppliers method");
+
 			return supplierList;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -40,7 +37,7 @@ public class SupplierDaoImpl implements SupplierDao {
 
 	@Override
 	public boolean save(Supplier supplier) {
-		logger.info("Starting save supplier method");
+		logger.info("Starting save method of SupplierDao");
 		try {
 			logger.info("Saving supplier...");
 			sessionFactory.getCurrentSession().save(supplier);
@@ -56,6 +53,7 @@ public class SupplierDaoImpl implements SupplierDao {
 
 	@Override
 	public boolean update(Supplier supplier) {
+		logger.info("Starting update method of SupplierDao");
 		try {
 			sessionFactory.getCurrentSession().update(supplier);
 			return true;
@@ -69,6 +67,7 @@ public class SupplierDaoImpl implements SupplierDao {
 	@Override
 	public boolean delete(int id) {
 		// TODO Auto-generated method stub
+		logger.info("Starting delete method of SupplierDao");
 		try {
 			sessionFactory.getCurrentSession().delete(getSupplierById(id));
 			return true;
@@ -82,6 +81,7 @@ public class SupplierDaoImpl implements SupplierDao {
 	@Override
 	public Supplier getSupplierById(int id) {
 		// TODO Auto-generated method stub
+		logger.info("Starting getSupplierById method of SupplierDao");
 		return (Supplier) sessionFactory.getCurrentSession().get(Supplier.class, id);
 	}
 
