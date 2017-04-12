@@ -33,6 +33,8 @@ public class CustomerOrder implements Serializable {
 	@JoinColumn(name = "shippingAddressId")
 	private ShippingAddress shippingAddress;
 
+	private String orderStatus;
+
 	public int getId() {
 		return id;
 	}
@@ -63,6 +65,14 @@ public class CustomerOrder implements Serializable {
 
 	public void setShippingAddress(ShippingAddress shippingAddress) {
 		this.shippingAddress = shippingAddress;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 }
