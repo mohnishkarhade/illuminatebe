@@ -82,7 +82,22 @@ public class CustomerDaoImpl implements CustomerDao {
 	public boolean update(Customer customer) {
 		// TODO Auto-generated method stub
 		logger.info("Starting update method of customerDao");
-		return false;
+		try {
+			Session session = sessionFactory.getCurrentSession();
+
+//			customer.getBillingAddress().setCustomer(customer);
+//			customer.getShippingAddress().setCustomer(customer);
+
+			session.update(customer);
+			session.update(customer.getBillingAddress());
+			session.update(customer.getShippingAddress());
+			
+			return true;
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
