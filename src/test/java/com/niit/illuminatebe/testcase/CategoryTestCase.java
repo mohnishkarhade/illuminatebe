@@ -43,7 +43,8 @@ public class CategoryTestCase {
 	@Test
 	public void getAllCategories(){
 		List<Category> categoryList= categoryService.getAllCategories();
-		System.out.println(categoryList);		
+		System.out.println(categoryList);
+		Assert.assertEquals("Get all category test", 2, categoryList.size());
 	}
 
 }
